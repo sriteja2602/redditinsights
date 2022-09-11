@@ -22,12 +22,12 @@ function App() {
 {/* <Button content='Primary' primary /> */}
 
           <Routes>
-            <Route path='/' element={<Home/>}></Route>
-            <Route path='/about' element={<About/>}></Route>
-            <Route path='/posts' element={<Posts/>}></Route>
-            <Route path='/analytics' element={<Analytics/>}></Route>
-            <Route path='/notfound' element={<NotFound />}></Route>
-            <Route path='/*' element={<NotFound />}></Route>
+            <Route path='/redditinsights' element={<Home/>}></Route>
+            <Route path='/redditinsights/about' element={<About/>}></Route>
+            <Route path='/redditinsights/posts' element={<Posts/>}></Route>
+            <Route path='/redditinsights/analytics' element={<Analytics/>}></Route>
+            <Route path='/redditinsights/notfound' element={<NotFound />}></Route>
+            <Route path='/redditinsights/*' element={<NotFound />}></Route>
           </Routes>
         </main>
         <Footer/>
