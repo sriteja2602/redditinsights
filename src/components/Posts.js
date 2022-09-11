@@ -7,33 +7,20 @@ import { FaAward } from "react-icons/fa";
 export default function Posts(params) {
   
   const { posts, loading, fetchBestOfPosts } = useContext(RedditContext);
-  // const [posts, setPosts] = useState([]);
-  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetchBestOfPosts();
-  }, []);
 
-  // const fetchBestOfPosts = async () => {
-  //   setLoading(true)
-  //   const response = await fetch(`${RedditOauthUrl}/r/pics/top`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${RedditToken}`,
-  //       },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   console.log(data);
-  //   setPosts(data.data.children);
-  //   console.log(data.data.children);
-  //   setLoading(false);
-  // };
+    return () => {
+      abortController.abort()
+    }
+  }, []);
 
   if (!loading) {
     return (
       <div>
-        <div className="flex flex-wrap justify-between items-start">
+        <div className="mt-15 flex flex-wrap justify-between items-start">
           {posts.map((post, i) => (
             <div
               className="flex-1-0-1 rounded-lg shadow-lg bg-white max-w-sm mt-14"
@@ -43,7 +30,7 @@ export default function Posts(params) {
                 target="_blank"
                 href={"https://www.reddit.com" + post.data.permalink}
               >
-                <img className="rounded-t-lg" src={post.data.url} alt="" />
+                <img className="rounded-t-lg lazy-loading" src={post.data.url} alt="" />
               </a>
               <div className="p-6">
                 <h5 className="text-gray-900 text-lg font-medium mb-2">
@@ -57,7 +44,6 @@ export default function Posts(params) {
                     <FaAward className="h-8 w-8"></FaAward>
                     {post.data.all_awardings.length}
                   </p>
-                  {/* <button type="button" className="mb-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button> */}
                   <div className="flex justify-end">
                     <p className="text-center">
                       <HiOutlineThumbUp className="h-8 w-8"></HiOutlineThumbUp>
@@ -76,6 +62,6 @@ export default function Posts(params) {
       </div>
     );
   } else {
-    return <Loader />;
+    return <Loader size="8"/>;
   }
 }

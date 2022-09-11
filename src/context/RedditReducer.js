@@ -1,6 +1,11 @@
 
 const RedditReducer = (state, action) => {
     switch (action.type) {
+        case 'SET_LINK':
+            return {
+                ...state,
+                posturl: action.payload,
+            }
         case 'GET_POSTS':
             return {
                 ...state,
@@ -10,13 +15,25 @@ const RedditReducer = (state, action) => {
         case 'GET_JOKE':
             return {
                 ...state,
-                posts: action.payload,
-                loading: false
+                jokes: action.payload,
+                jokeLoading: false
             }
         case 'SET_LOADING':
             return {
                 ...state,
-                loading: false
+                loading: true
+            }
+        case 'SET_JOKELOADING':
+            return {
+                ...state,
+                jokeLoading: true
+            }
+        case 'GET_POSTANALYTICS':
+            return {
+                ...state,
+                postDetail: action.payload,
+                loading: false,
+                dataReady: true
             }
     
         default:

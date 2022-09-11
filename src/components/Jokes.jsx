@@ -3,27 +3,44 @@ import RedditContext from "../context/RedditContext";
 import Loader from "./layout/Loader";
 
 function Jokes() {
+  const { jokes, jokeLoading, fetchJokes } = useContext(RedditContext);
 
-    const {posts, loading, fetchJokes} = useContext(RedditContext)
-    
-    useEffect(() => {
-        fetchJokes();
-      }, []);
+  useEffect(() => {
+    fetchJokes();
+  }, []);
 
+  if (jokeLoading) {
+    return <Loader size="5" />;
+  } else {
+      const rndInt = Math.floor(Math.random() * 5) + 0
+      const dropit = () => {
+      const dropdownList = document.querySelector("#answer");
+      dropdownList.classList.toggle("hidden");
+    };
+    console.log(jokes);
+    console.log(jokes[rndInt]);
+    if(jokes[rndInt]!=undefined){
 
-    if(loading){
-        return ( 
-            <Loader/>
-        );
-    } else {
+        const title = jokes[rndInt].data.title
+        const selftext = jokes[rndInt].data.selftext
         return (
-        <span className="text-xs">
-        {posts.map((post,i) => (
-            <span key={i}>{post.data.title}</span>
-        ))}
-        </span>
+            <div className="text-sm">
+              <p
+                type="button"
+                className="font-bold text-white-500"
+                onClick={dropit}
+                id="dropdown"
+              >
+                {title}
+              </p>
+              <div id="answer" className="text-white-500 w-auto pt-2 hidden">
+                {selftext}
+              </div>
+            </div>
         )
     }
+    else{}
+  }
 }
 
 export default Jokes;

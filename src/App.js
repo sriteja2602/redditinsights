@@ -1,13 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'tw-elements';
 import './App.css';
+
 import Home from './components/Home';
 import About from './components/About';
-import NotFound from './components/NotFound';
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
 import Posts from './components/Posts';
+import Navbar from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import NotFound from './components/NotFound';
+
 import { RedditProvider } from "./context/RedditContext";
+import Analytics from './components/Analytics';
 
 function App() {
   return (
@@ -22,6 +25,7 @@ function App() {
             <Route path='/' element={<Home/>}></Route>
             <Route path='/about' element={<About/>}></Route>
             <Route path='/posts' element={<Posts/>}></Route>
+            <Route path='/analytics' element={<Analytics/>}></Route>
             <Route path='/notfound' element={<NotFound />}></Route>
             <Route path='/*' element={<NotFound />}></Route>
           </Routes>
