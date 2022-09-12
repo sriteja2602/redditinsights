@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string.
+    # /30 denotes that it will run once every 30 minutes
+    - cron:  '*/15 * * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Stage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://www.reddit.com/api/v1/access_token'
+        method: 'POST'
+        customHeaders: '{"Content-Type": "x-www-form-urlencoded"}'
+        data: '{"username": ${{ secrets.REDDIT_USER }}, "password": ${{ secrets.REDDIT_PASSWORD }}}'
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://www.reddit.com/api/v1/access_token"
+        run: |
+            echo ${{ steps.myRequest.outputs.response }}
+            echo ${{ steps.myRequest.outputs.headers }}
+            echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }}
