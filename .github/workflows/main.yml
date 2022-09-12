@@ -26,8 +26,6 @@ jobs:
         data: '{"username": ${{ secrets.REDDIT_USER }}, "password": ${{ secrets.REDDIT_PASSWORD }}}'
         id: myRequest
         uses: fjogeleit/http-request-action@v1
-        with:
-          url: "https://www.reddit.com/api/v1/access_token"
         run: |
             echo ${{ steps.myRequest.outputs.response }}
             echo ${{ steps.myRequest.outputs.headers }}
