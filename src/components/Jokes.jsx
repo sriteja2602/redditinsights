@@ -9,20 +9,16 @@ function Jokes() {
     fetchJokes();
   }, []);
 
-  if (jokeLoading) {
+  if (jokeLoading || jokes.length==0) {
     return <Loader size="5" />;
   } else {
-      const rndInt = Math.floor(Math.random() * 5) + 0
+    console.log(jokes);
+
       const dropit = () => {
       const dropdownList = document.querySelector("#answer");
       dropdownList.classList.toggle("hidden");
-    };
+      }
     console.log(jokes);
-    console.log(jokes[rndInt]);
-    if(jokes[rndInt]!=undefined){
-
-        const title = jokes[rndInt].data.title
-        const selftext = jokes[rndInt].data.selftext
         return (
             <div className="text-sm">
               <p
@@ -31,16 +27,14 @@ function Jokes() {
                 onClick={dropit}
                 id="dropdown"
               >
-                {title}
+                {jokes.setup}
               </p>
               <div id="answer" className="text-white-500 w-auto pt-2 hidden">
-                {selftext}
+                - <i> {jokes.punchline}</i>
               </div>
             </div>
         )
-    }
-    else{}
-  }
+        }
 }
 
 export default Jokes;

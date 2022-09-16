@@ -47,18 +47,16 @@ export function RedditProvider({ children }) {
     dispatch({
       type: "SET_JOKELOADING",
     });
-    const response = await fetch(`${RedditOauthUrl}/r/jokes/rising?limit=5`, {
+    const response = await fetch("https://official-joke-api.appspot.com/jokes/random", {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${RedditToken}`,
-      },
+      
     });
     const data = await response.json();
 
     if(response.status !== 401){
     dispatch({
       type: "GET_JOKE",
-      payload: data.data.children,
+      payload: data,
     });
   }
     else{
