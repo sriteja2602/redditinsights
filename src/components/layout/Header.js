@@ -27,7 +27,7 @@ function Navbar({ title }) {
         "
       >
        <div>
-          <Link to="/">Reddit Insights</Link>
+          <Link to="/redditinsights">Reddit Insights</Link>
         </div>
        
          <svg
@@ -59,12 +59,12 @@ function Navbar({ title }) {
               "
           >
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/books"
+              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/redditinsights/books"
                 >Best Of
               </Link>
             </li>
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/analytics"
+              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/redditinsights/analytics"
                 >Analytics
               </Link>
             </li>
