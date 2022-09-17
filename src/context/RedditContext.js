@@ -3,10 +3,10 @@ import RedditReducer from "./RedditReducer";
 
 const RedditContext = createContext();
 
-const RedditOauthUrl = process.env.REACT_APP_REDDIT_URL;
-const NYTIMES = process.env.REACT_APP_NY_TIMES;
-const API_KEY = process.env.REACT_APP_NY_API_KEY;
-const RedditToken = process.env.REACT_APP_REDDIT_TOKEN;
+const RedditOauthUrl = process.env.REACT_APP_VERCEL_REDDIT_URL;
+const NYTIMES = process.env.REACT_APP_VERCEL_NY_TIMES;
+const API_KEY = process.env.REACT_APP_VERCEL_NY_API_KEY;
+const RedditToken = process.env.REACT_APP_VERCEL_REDDIT_TOKEN;
 
 export function RedditProvider({ children }) {
 
