@@ -4,7 +4,7 @@ import './App.css';
 
 import Home from './components/Home';
 import About from './components/About';
-import Posts from './components/Posts';
+import Books from './components/Books';
 import Navbar from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from './components/NotFound';
@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>}></Route>
             <Route path='/about' element={<About/>}></Route>
-            <Route path='/posts' element={<Posts/>}></Route>
+            <Route path='/books' element={<Books/>}></Route>
             <Route path='/analytics' element={<Analytics/>}></Route>
             <Route path='/notfound' element={<NotFound />}></Route>
             <Route path='/*' element={<NotFound />}></Route>

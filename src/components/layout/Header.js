@@ -59,7 +59,7 @@ function Navbar({ title }) {
               "
           >
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/posts"
+              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/books"
                 >Best Of
               </Link>
             </li>

@@ -12,13 +12,11 @@ function Jokes() {
   if (jokeLoading || jokes.length==0) {
     return <Loader size="5" />;
   } else {
-    console.log(jokes);
 
       const dropit = () => {
       const dropdownList = document.querySelector("#answer");
       dropdownList.classList.toggle("hidden");
       }
-    console.log(jokes);
         return (
             <div className="text-sm">
               <p

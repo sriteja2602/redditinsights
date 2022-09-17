@@ -6,10 +6,10 @@ const RedditReducer = (state, action) => {
                 ...state,
                 posturl: action.payload,
             }
-        case 'GET_POSTS':
+        case 'GET_BOOKS':
             return {
                 ...state,
-                posts: action.payload,
+                books: action.payload,
                 loading: false
             }
         case 'GET_JOKE':

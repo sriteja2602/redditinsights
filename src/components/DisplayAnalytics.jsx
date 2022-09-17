@@ -207,10 +207,10 @@ function DisplayAnalytics() {
             </tr>
             <tr className="border-b bg-green-100 border-green-200">
               <td className="text-sm border-r text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                Crossposts
+                Crossbooks
               </td>
               <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                {cleaned_data.num_crossposts}
+                {cleaned_data.num_crossbooks}
               </td>
             </tr>
             <tr className="border-b bg-green-100 border-green-200">

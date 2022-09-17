@@ -4,12 +4,14 @@ import RedditReducer from "./RedditReducer";
 const RedditContext = createContext();
 
 const RedditOauthUrl = process.env.REACT_APP_REDDIT_URL;
+const NYTIMES = process.env.REACT_APP_NY_TIMES;
+const API_KEY = process.env.REACT_APP_NY_API_KEY;
 const RedditToken = process.env.REACT_APP_REDDIT_TOKEN;
 
 export function RedditProvider({ children }) {
 
   const initialState = {
-    posts: [],
+    books: [],
     jokes:[],
     posturl: '',
     postDetail: [],
@@ -18,26 +20,18 @@ export function RedditProvider({ children }) {
   };
 
   const [state, dispatch] = useReducer(RedditReducer, initialState);
-
-  const fetchBestOfPosts = async () => {
+  const fetchBestOfBooks = async () => {
     dispatch({
       type: "SET_LOADING",
     });
-    const response = await fetch(`${RedditOauthUrl}/r/pics/top`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${RedditToken}`,
-      },
-    });
+    const response = await fetch(`${NYTIMES}/history.json?api-key=${API_KEY}&age-group=18`);
     
-    if(response.status !== 401){
-
+    if(response.status === 200){
       const data = await response.json();
       dispatch({
-        type: "GET_POSTS",
-        payload: data.data.children,
+        type: "GET_BOOKS",
+        payload: data.results
       });
-      console.log(data.data.children[0]);
     } else {
       console.log(response.status);
     }
@@ -47,13 +41,10 @@ export function RedditProvider({ children }) {
     dispatch({
       type: "SET_JOKELOADING",
     });
-    const response = await fetch("https://official-joke-api.appspot.com/jokes/random", {
-      method: "GET",
-      
-    });
+    const response = await fetch("https://official-joke-api.appspot.com/jokes/random");
     const data = await response.json();
 
-    if(response.status !== 401){
+    if(response.status === 200){
     dispatch({
       type: "GET_JOKE",
       payload: data,
@@ -77,7 +68,7 @@ export function RedditProvider({ children }) {
     e.preventDefault()
     console.log('hi there');
     const link = state.posturl.substring(22, state.posturl.length)
-    if(link!= ''){
+    if(link !== ''){
     dispatch({
       type: "SET_LOADING",
     });
@@ -105,13 +96,13 @@ export function RedditProvider({ children }) {
   return (
     <RedditContext.Provider
       value={{
-        posts: state.posts,
+        books: state.books,
         jokes: state.jokes,
         loading: state.loading,
         jokeLoading: state.jokeLoading,
         posturl: state.posturl,
         postDetail: state.postDetail,
-        fetchBestOfPosts,
+        fetchBestOfBooks,
         fetchJokes,
         link,
         handleSubmit
