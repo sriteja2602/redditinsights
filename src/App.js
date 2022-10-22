@@ -4,7 +4,6 @@ import './App.css';
 
 import Home from './components/Home';
 import About from './components/About';
-import Books from './components/Books';
 import Navbar from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from './components/NotFound';
@@ -22,12 +21,11 @@ function App() {
 {/* <Button content='Primary' primary /> */}
 
           <Routes>
-            <Route path='/redditinsights' element={<Home/>}></Route>
-            <Route path='/redditinsights/about' element={<About/>}></Route>
-            <Route path='/redditinsights/books' element={<Books/>}></Route>
-            <Route path='/redditinsights/analytics' element={<Analytics/>}></Route>
-            <Route path='/redditinsights/notfound' element={<NotFound />}></Route>
-            <Route path='/redditinsights/*' element={<NotFound />}></Route>
+            <Route path='/' element={<Home/>}></Route>
+            <Route path='/about' element={<About/>}></Route>
+            <Route path='/analytics' element={<Analytics/>}></Route>
+            <Route path='/notfound' element={<NotFound />}></Route>
+            <Route path='/*' element={<NotFound />}></Route>
           </Routes>
         </main>
         <Footer/>

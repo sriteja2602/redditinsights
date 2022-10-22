@@ -9,14 +9,15 @@ function SearchPost() {
   return (
     <>
       <div className="grid xs:justify-items-stretch md:justify-items-center">
-        <form onSubmit={handleSubmit} className="mb-3 xl:w-96 sm:w-full">
+        <form onSubmit={handleSubmit} className="mb-3 xl:w-96 sm:w-96">
           <label
             forhtml="exampleURL0"
             className="form-label inline-block mt-12 mb-2 text-gray-700"
           >
-            URL input
+            Reddit URL 
           </label>
           <input
+            style={{fontSize: "small"}}
             value={posturl}
             onChange={link}
             type="url"
@@ -38,7 +39,7 @@ function SearchPost() {
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
             id="exampleURL0"
-            placeholder="URL Input"
+            placeholder="Reddit URL"
           />
           <button
                 type="submit"
