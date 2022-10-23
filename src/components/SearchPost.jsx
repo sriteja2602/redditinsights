@@ -5,7 +5,7 @@ import Loader from "./layout/Loader";
 
 function SearchPost() {
 
- const {loading, handleSubmit, link, posturl, dataReady} = useContext(RedditContext)
+ const {loading, handleSubmit, link, posturl} = useContext(RedditContext)
   return (
     <>
       <div className="grid xs:justify-items-stretch md:justify-items-center">

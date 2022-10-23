@@ -59,7 +59,7 @@ function DisplayAnalytics() {
                   {Object.keys(clensedData).map(obj => {
                     
                     return (
-                      <div key={obj} className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
+                      <div key={obj} className="overflow-auto w-96 text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
                         {obj}: {clensedData[obj]}
                       </div>
                     );
