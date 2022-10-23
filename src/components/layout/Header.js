@@ -59,12 +59,12 @@ function Navbar({ title }) {
               "
           >
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/posts"
+              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/posts" onClick={hambar}
                 >Best Of
               </Link>
             </li>
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/analytics"
+              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/analytics" onClick={hambar}
                 >Analytics
               </Link>
             </li>

@@ -55,11 +55,11 @@ function DisplayAnalytics() {
           ></iframe>
         </div>
 
-        <div className="flex flex-col py-2 inline-block min-w-full sm:px-6 lg:px-8 border text-center">
+        <div className="flex flex-col py-2 inline-block min-w-full lg:w-96 sm:px-6 border text-center">
                   {Object.keys(clensedData).map(obj => {
                     
                     return (
-                      <div key={obj} className="overflow-auto w-96 text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
+                      <div key={obj} className="overflow-auto text-sm border-b text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
                         {obj}: {clensedData[obj]}
                       </div>
                     );

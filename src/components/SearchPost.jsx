@@ -8,7 +8,7 @@ function SearchPost() {
  const {loading, handleSubmit, link, posturl} = useContext(RedditContext)
   return (
     <>
-      <div className="grid xs:justify-items-stretch md:justify-items-center">
+      <div className="grid xs:justify-items-stretch md:justify-items-center my-5 py-5">
         <form onSubmit={handleSubmit} className="mb-3 xl:w-96 sm:w-96">
           <label
             forhtml="exampleURL0"
