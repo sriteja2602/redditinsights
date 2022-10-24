@@ -5,17 +5,11 @@ import RedditContext from "../context/RedditContext";
 import Loader from "./layout/Loader";
 
 function DisplayAnalytics() {
-  const { postDetail, loading, posturl } = useContext(RedditContext);
-
-  if (postDetail.length === 0) {
-  } else if (loading) {
-    return (
-      <div className="mt-10">
-        <Loader size="8" />
-      </div>
-    );
-  } else {
-    console.log(postDetail);
+  const { postDetail, posturl, loading } = useContext(RedditContext);
+  if (loading) {
+    return <Loader/>;
+  } 
+  else if (Object.keys(postDetail).length !== 0) {
     const cleaned_data = postDetail[0].data.children[0].data;
     const extractLink = posturl.substring(0, posturl.length - 44);
     const embedLink =
@@ -38,6 +32,7 @@ function DisplayAnalytics() {
       Thumbnail: cleaned_data.thumbnail,
       Subreddit_subscribers: cleaned_data.subreddit_subscribers,
     };
+
     return (
       <>
         <h5 className="text-center mt-10 underline text-xl uppercase font-bold">
@@ -52,21 +47,25 @@ function DisplayAnalytics() {
             height="450"
             width="640"
             scrolling="no"
+            title={embedLink}
           ></iframe>
         </div>
 
         <div className="flex flex-col py-2 inline-block min-w-full lg:w-96 sm:px-6 border text-center">
-                  {Object.keys(clensedData).map(obj => {
-                    
-                    return (
-                      <div key={obj} className="overflow-auto text-sm border-b text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                        {obj}: {clensedData[obj]}
-                      </div>
-                    );
-                  })}
+          {Object.keys(clensedData).map((obj) => {
+            return (
+              <div
+                key={obj}
+                className="overflow-auto text-sm border-b text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+              >
+                {obj}: {clensedData[obj]}
+              </div>
+            );
+          })}
         </div>
       </>
     );
+  } else {
   }
 }
 

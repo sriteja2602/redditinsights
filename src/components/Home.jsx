@@ -1,12 +1,9 @@
-import { useEffect } from "react";
 
 export default function Home(args) {
-  const url = "https://oauth.reddit.com";
-  const endpoint = "/best";
 
   return (
     <>
-<h1 className="text-3xl font-bold underline">
+<h1 className="text-3xl font-bold underline my-6 py-6">
       Hello world!
     </h1>
   </>

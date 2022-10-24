@@ -29,6 +29,12 @@ const RedditReducer = (state, action) => {
                 loading: false,
                 dataReady: true
             }
+        case 'CLEAR_POSTURL':
+            return {
+                ...state,
+                posturl: '',  
+                postDetail: []         
+            }
     
         default:
             return state;

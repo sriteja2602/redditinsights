@@ -1,8 +1,6 @@
-import PropTypes from "prop-types";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-function Navbar({ title }) {
+function Navbar() {
 
   function hambar() {
     const menu = document.querySelector('#menu');
@@ -59,14 +57,14 @@ function Navbar({ title }) {
               "
           >
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/posts" onClick={hambar}
+              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/posts" onClick={hambar}
                 >Best Of
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/analytics" onClick={hambar}
+              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/analytics" onClick={hambar}
                 >Analytics
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
