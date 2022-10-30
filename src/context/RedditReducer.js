@@ -35,6 +35,11 @@ const RedditReducer = (state, action) => {
                 posturl: '',  
                 postDetail: []         
             }
+        case 'BESTOF_POSTS':
+            return {
+                ...state,
+                posts: action.payload         
+            }
     
         default:
             return state;

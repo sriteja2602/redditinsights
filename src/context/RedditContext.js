@@ -6,6 +6,7 @@ const RedditContext = createContext();
 export function RedditProvider({ children }) {
   const initialState = {
     jokes: [],
+    posts:[],
     posturl: "",
     postDetail: [],
     jokeLoading: false,
@@ -47,7 +48,14 @@ export function RedditProvider({ children }) {
       dispatch({
         type: "SET_LOADING",
       });
-      let mainLink = link.substring(0, link.search("/?utm_source=share") - 2);
+      let mainLink = ''
+      console.log(link.search("/?utm_source=share"));
+      if(link.search("/?utm_source=share") !== - 1){
+
+        mainLink = link.substring(0, link.search("/?utm_source=share") - 2);
+      } else if(link.search("/comments/") !== -1 && link[link.length - 1] === '/'){
+        mainLink = link.substring(0, link.length - 2);
+      } 
       const response = await fetch(`${mainLink}.json`);
       const data = await response.json();
 
@@ -57,7 +65,7 @@ export function RedditProvider({ children }) {
           payload: data,
         });
       } else {
-        console.log(response.status);
+        console.log(response);
       }
     }
   };
@@ -67,10 +75,22 @@ export function RedditProvider({ children }) {
       type: "CLEAR_POSTURL",
     });
   }
+
+  const bestOf = async () => {
+    const response = await fetch("https://www.reddit.com/r/pics/top.json");
+    const data = await response.json()
+   
+    dispatch({
+      type: "BESTOF_POSTS",
+      payload: data
+    })
+  }
+
   return (
     <RedditContext.Provider
       value={{
         jokes: state.jokes,
+        posts: state.posts,
         loading: state.loading,
         jokeLoading: state.jokeLoading,
         posturl: state.posturl,
@@ -78,7 +98,8 @@ export function RedditProvider({ children }) {
         fetchJokes,
         link,
         handleSubmit,
-        clearPostUrl
+        clearPostUrl,
+        bestOf
       }}
     >
       {children}

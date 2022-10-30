@@ -57,7 +57,7 @@ function Navbar() {
               "
           >
             <li>
-              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/posts" onClick={hambar}
+              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/bestOfPosts" onClick={hambar}
                 >Best Of
               </NavLink>
             </li>

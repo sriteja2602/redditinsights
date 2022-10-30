@@ -11,26 +11,41 @@ function DisplayAnalytics() {
   } 
   else if (Object.keys(postDetail).length !== 0) {
     const cleaned_data = postDetail[0].data.children[0].data;
-    const extractLink = posturl.substring(0, posturl.length - 44);
+    console.warn(posturl);
+    console.log(posturl.search("comments"));
+    let a = 0
+    for(let i = 25; i<posturl.length;i++){
+      
+      if(posturl[i] === '/'){
+        a++;
+      }
+      if(a === 4){
+        a=i;
+        break
+      }
+    }
+    const extractLink = posturl.substring(0, a);
+    console.log(extractLink);
     const embedLink =
-      extractLink.substring(0, 18) +
-      "media" +
-      extractLink.substring(18, extractLink.length);
-
+    extractLink.substring(0, 18) +
+    "media" +
+    extractLink.substring(18, extractLink.length);
+    
+    console.log(embedLink);
     const clensedData = {
       Author: cleaned_data.author,
       Title: cleaned_data.title,
       Upvotes: cleaned_data.ups,
       Downvotes: cleaned_data.downs,
-      Total_Awards: cleaned_data.total_awards_received,
+      Comments: cleaned_data.num_comments,
+      "Total Awards": cleaned_data.total_awards_received,
+      "Upvote Ratio": cleaned_data.upvote_ratio,
+      Score: cleaned_data.score,
       Crossposts: cleaned_data.num_crossposts,
       Duplicates: cleaned_data.num_duplicates,
-      Reports: cleaned_data.num_reports,
-      Mod_Reason_Title: cleaned_data.mod_reason_title,
-      Mod_Reason_By: cleaned_data.mod_reason_by,
-      Mod_Note: cleaned_data.mod_note,
-      Thumbnail: cleaned_data.thumbnail,
-      Subreddit_subscribers: cleaned_data.subreddit_subscribers,
+      Archived: cleaned_data.subreddit_type,
+      Url: cleaned_data.url,
+      "Subreddit subscribers": cleaned_data.subreddit_subscribers,
     };
 
     return (
@@ -51,7 +66,7 @@ function DisplayAnalytics() {
           ></iframe>
         </div>
 
-        <div className="flex flex-col py-2 inline-block min-w-full lg:w-96 sm:px-6 border text-center">
+        <div className="flex flex-col py-2 inline-block min-w-full lg:w-96 sm:px-6 border text-center" style={{marginRight: '6rem'}}>
           {Object.keys(clensedData).map((obj) => {
             return (
               <div
