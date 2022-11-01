@@ -3,54 +3,33 @@ import RedditReducer from "./RedditReducer";
 
 const RedditContext = createContext();
 
-const RedditOauthUrl = process.env.REACT_APP_REDDIT_URL;
-const NYTIMES = process.env.REACT_APP_NY_TIMES;
-const API_KEY = process.env.REACT_APP_NY_API_KEY;
-const RedditToken = process.env.REACT_APP_REDDIT_TOKEN;
-
 export function RedditProvider({ children }) {
-
   const initialState = {
-    books: [],
-    jokes:[],
-    posturl: '',
+    jokes: [],
+    posts:[],
+    posturl: "",
     postDetail: [],
     jokeLoading: false,
     loading: false,
   };
 
   const [state, dispatch] = useReducer(RedditReducer, initialState);
-  const fetchBestOfBooks = async () => {
-    dispatch({
-      type: "SET_LOADING",
-    });
-    const response = await fetch(`${NYTIMES}/history.json?api-key=${API_KEY}&age-group=18`);
-    
-    if(response.status === 200){
-      const data = await response.json();
-      dispatch({
-        type: "GET_BOOKS",
-        payload: data.results
-      });
-    } else {
-      console.log(response.status);
-    }
-  };
 
   const fetchJokes = async () => {
     dispatch({
       type: "SET_JOKELOADING",
     });
-    const response = await fetch("https://official-joke-api.appspot.com/jokes/random");
+    const response = await fetch(
+      "https://official-joke-api.appspot.com/jokes/random"
+    );
     const data = await response.json();
 
-    if(response.status === 200){
-    dispatch({
-      type: "GET_JOKE",
-      payload: data,
-    });
-  }
-    else{
+    if (response.status === 200) {
+      dispatch({
+        type: "GET_JOKE",
+        payload: data,
+      });
+    } else {
       console.log(response.status);
     }
   };
@@ -58,54 +37,69 @@ export function RedditProvider({ children }) {
   const link = (e) => {
     dispatch({
       type: "SET_LINK",
-      payload: e.target.value
-    })
-    console.log(e.target.value.substring(22, e.target.value.length));
-  }
-
+      payload: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log('hi there');
-    const link = state.posturl.substring(22, state.posturl.length)
-    if(link !== ''){
-    dispatch({
-      type: "SET_LOADING",
-    });
-    const response = await fetch(`${RedditOauthUrl}${link}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${RedditToken}`,
-      },
-    });
-    const data = await response.json();
-  
-    if(response.status !== 401){
-      console.log(data);
+    e.preventDefault();
+    const link = state.posturl;
+    if (link !== "") {
       dispatch({
-        type: 'GET_POSTANALYTICS',
-        payload: data
-      })
-  }
-    else{
-      console.log(response.status);
+        type: "SET_LOADING",
+      });
+      let mainLink = ''
+      console.log(link.search("/?utm_source=share"));
+      if(link.search("/?utm_source=share") !== - 1){
+
+        mainLink = link.substring(0, link.search("/?utm_source=share") - 2);
+      } else if(link.search("/comments/") !== -1 && link[link.length - 1] === '/'){
+        mainLink = link.substring(0, link.length - 2);
+      } 
+      const response = await fetch(`${mainLink}.json`);
+      const data = await response.json();
+
+      if (response.status !== 401) {
+        dispatch({
+          type: "GET_POSTANALYTICS",
+          payload: data,
+        });
+      } else {
+        console.log(response);
+      }
     }
-  }
   };
+
+  const clearPostUrl = () => {
+    dispatch({
+      type: "CLEAR_POSTURL",
+    });
+  }
+
+  const bestOf = async () => {
+    const response = await fetch("https://www.reddit.com/r/pics/top.json");
+    const data = await response.json()
+   
+    dispatch({
+      type: "BESTOF_POSTS",
+      payload: data
+    })
+  }
 
   return (
     <RedditContext.Provider
       value={{
-        books: state.books,
         jokes: state.jokes,
+        posts: state.posts,
         loading: state.loading,
         jokeLoading: state.jokeLoading,
         posturl: state.posturl,
         postDetail: state.postDetail,
-        fetchBestOfBooks,
         fetchJokes,
         link,
-        handleSubmit
+        handleSubmit,
+        clearPostUrl,
+        bestOf
       }}
     >
       {children}

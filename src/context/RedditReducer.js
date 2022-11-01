@@ -6,12 +6,6 @@ const RedditReducer = (state, action) => {
                 ...state,
                 posturl: action.payload,
             }
-        case 'GET_BOOKS':
-            return {
-                ...state,
-                books: action.payload,
-                loading: false
-            }
         case 'GET_JOKE':
             return {
                 ...state,
@@ -34,6 +28,17 @@ const RedditReducer = (state, action) => {
                 postDetail: action.payload,
                 loading: false,
                 dataReady: true
+            }
+        case 'CLEAR_POSTURL':
+            return {
+                ...state,
+                posturl: '',  
+                postDetail: []         
+            }
+        case 'BESTOF_POSTS':
+            return {
+                ...state,
+                posts: action.payload         
             }
     
         default:

@@ -9,8 +9,8 @@ function Jokes() {
     fetchJokes();
   }, []);
 
-  if (jokeLoading || jokes.length==0) {
-    return <Loader size="5" />;
+  if (jokeLoading || jokes.length === 0) {
+    return <h1>Loading...</h1>;
   } else {
 
       const dropit = () => {

@@ -1,8 +1,6 @@
-import PropTypes from "prop-types";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-function Navbar({ title }) {
+function Navbar() {
 
   function hambar() {
     const menu = document.querySelector('#menu');
@@ -27,7 +25,7 @@ function Navbar({ title }) {
         "
       >
        <div>
-          <Link to="/redditinsights">Reddit Insights</Link>
+          <Link to="/">Reddit Insights</Link>
         </div>
        
          <svg
@@ -59,14 +57,14 @@ function Navbar({ title }) {
               "
           >
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/redditinsights/books"
+              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/bestOfPosts" onClick={hambar}
                 >Best Of
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="md:p-4 py-2 block hover:text-purple-400" to="/redditinsights/analytics"
+              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/analytics" onClick={hambar}
                 >Analytics
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>

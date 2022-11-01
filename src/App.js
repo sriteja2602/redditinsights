@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, HashRouter } from 'react-router-dom';
 import 'tw-elements';
 import './App.css';
 
 import Home from './components/Home';
 import About from './components/About';
-import Books from './components/Books';
+import DisplayPosts from './components/DisplayPosts';
 import Navbar from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from './components/NotFound';
@@ -15,24 +15,22 @@ import Analytics from './components/Analytics';
 function App() {
   return (
   <RedditProvider>
-    <Router>
+    <HashRouter>
       <div className='flex flex-col justify-between h-screen'>
         <Navbar/>
         <main className='container mx-auto px-3 pb-12'>
-{/* <Button content='Primary' primary /> */}
-
           <Routes>
             <Route path='/' element={<Home/>}></Route>
             <Route path='/about' element={<About/>}></Route>
-            <Route path='/books' element={<Books/>}></Route>
             <Route path='/analytics' element={<Analytics/>}></Route>
+            <Route path='/bestOfPosts' element={<DisplayPosts/>}></Route>
             <Route path='/notfound' element={<NotFound />}></Route>
             <Route path='/*' element={<NotFound />}></Route>
           </Routes>
         </main>
         <Footer/>
       </div>
-    </Router>
+    </HashRouter>
   </RedditProvider>
   );
 }

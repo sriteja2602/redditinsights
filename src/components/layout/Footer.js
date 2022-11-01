@@ -15,12 +15,12 @@ function Footer(params) {
           </div>
           <div className="flex flex-col">
             <div className="flex gap-4 justify-center flex-row pb-2 border-b border-gray-300">
-              <FiFacebook className="w-4 h-4"></FiFacebook>
-              <FaInstagram className="w-4 h-4"></FaInstagram>
-              <FiTwitter className="w-4 h-4"></FiTwitter>
-              <IoLogoGoogle className="w-4 h-4"></IoLogoGoogle>
-              <FaWhatsapp className="w-4 h-4"></FaWhatsapp>
-              <FaGithub className="w-4 h-4"></FaGithub>
+              <FiFacebook className="dark:text-white w-4 h-4"></FiFacebook>
+              <FaInstagram className="dark:text-white w-4 h-4"></FaInstagram>
+              <FiTwitter className="dark:text-white w-4 h-4"></FiTwitter>
+              <IoLogoGoogle className="dark:text-white w-4 h-4"></IoLogoGoogle>
+              <FaWhatsapp className="dark:text-white w-4 h-4"></FaWhatsapp>
+              <FaGithub className="dark:text-white w-4 h-4"></FaGithub>
             </div>
             <div className="mt-2 dark:text-white flex-row-reverse">
               <Jokes />
