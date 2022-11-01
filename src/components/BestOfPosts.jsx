@@ -8,11 +8,15 @@ const BestOfPosts = () => {
   }, []);
 
   if (posts.length !== 0) {
-    let cleaned_data = posts.data.children;
-    console.warn(cleaned_data[13].data);
     
-    return cleaned_data.map((i) => (
-      <div className="flex justify-center my-6 py-6" key={i.data.title}>
+    let cleaned_data = posts.data.children;
+
+    let muchClean = cleaned_data.filter((i) => {
+      return i.data.url.search('gallery') === -1
+    }) // filtered cleaned_data array from image url containing gallery in url since gallery url's cannot be rendered currently
+    
+    return muchClean.map((i) => (
+      <div className="my-6 py-6" key={i.data.title}>
         <div className="rounded-lg shadow-lg bg-white max-w-sm">
           <img
             className="rounded-t-lg"

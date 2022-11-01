@@ -25,13 +25,11 @@ function DisplayAnalytics() {
       }
     }
     const extractLink = posturl.substring(0, a);
-    console.log(extractLink);
     const embedLink =
     extractLink.substring(0, 18) +
     "media" +
     extractLink.substring(18, extractLink.length);
     
-    console.log(embedLink);
     const clensedData = {
       Author: cleaned_data.author,
       Title: cleaned_data.title,

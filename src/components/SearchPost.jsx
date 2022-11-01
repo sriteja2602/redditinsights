@@ -19,6 +19,7 @@ function SearchPost() {
             style={{ fontSize: "small" }}
             value={posturl}
             onChange={link}
+            autoFocus
             type="url"
             className="
               form-control
