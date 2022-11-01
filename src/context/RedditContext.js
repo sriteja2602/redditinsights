@@ -49,13 +49,16 @@ export function RedditProvider({ children }) {
         type: "SET_LOADING",
       });
       let mainLink = ''
-      console.log(link.search("/?utm_source=share"));
       if(link.search("/?utm_source=share") !== - 1){
 
         mainLink = link.substring(0, link.search("/?utm_source=share") - 2);
+
       } else if(link.search("/comments/") !== -1 && link[link.length - 1] === '/'){
+        
         mainLink = link.substring(0, link.length - 2);
+      
       } 
+
       const response = await fetch(`${mainLink}.json`);
       const data = await response.json();
 
@@ -77,7 +80,9 @@ export function RedditProvider({ children }) {
   }
 
   const bestOf = async () => {
-    const response = await fetch("https://www.reddit.com/r/pics/top.json");
+    let filters = ["top", "hot", "controversial", "rising"]
+    let filteredType = filters[Math.floor(Math.random() * filters.length)]
+    const response = await fetch(`https://www.reddit.com/r/pics/${filteredType}.json`);
     const data = await response.json()
    
     dispatch({
