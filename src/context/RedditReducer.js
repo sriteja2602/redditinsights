@@ -12,16 +12,6 @@ const RedditReducer = (state, action) => {
                 jokes: action.payload,
                 jokeLoading: false
             }
-        case 'SET_LOADING':
-            return {
-                ...state,
-                loading: true
-            }
-        case 'SET_JOKELOADING':
-            return {
-                ...state,
-                jokeLoading: true
-            }
         case 'GET_POSTANALYTICS':
             return {
                 ...state,
@@ -38,9 +28,24 @@ const RedditReducer = (state, action) => {
         case 'BESTOF_POSTS':
             return {
                 ...state,
-                posts: action.payload         
+                posts: action.payload,
+                postsLoading: false       
             }
-    
+        case 'SET_LOADING':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'SET_JOKELOADING':
+            return {
+                ...state,
+                jokeLoading: true
+            }        
+        case 'SET_POSTSLOADING':
+            return {
+                ...state,
+                postsLoading: true
+            }        
         default:
             return state;
     }

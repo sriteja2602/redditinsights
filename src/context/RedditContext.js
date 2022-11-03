@@ -6,11 +6,12 @@ const RedditContext = createContext();
 export function RedditProvider({ children }) {
   const initialState = {
     jokes: [],
-    posts:[],
+    posts: [],
     posturl: "",
     postDetail: [],
-    jokeLoading: false,
     loading: false,
+    jokeLoading: false,
+    postsLoading: false,
   };
 
   const [state, dispatch] = useReducer(RedditReducer, initialState);
@@ -48,16 +49,15 @@ export function RedditProvider({ children }) {
       dispatch({
         type: "SET_LOADING",
       });
-      let mainLink = ''
-      if(link.search("/?utm_source=share") !== - 1){
-
+      let mainLink = "";
+      if (link.search("/?utm_source=share") !== -1) {
         mainLink = link.substring(0, link.search("/?utm_source=share") - 2);
-
-      } else if(link.search("/comments/") !== -1 && link[link.length - 1] === '/'){
-        
+      } else if (
+        link.search("/comments/") !== -1 &&
+        link[link.length - 1] === "/"
+      ) {
         mainLink = link.substring(0, link.length - 2);
-      
-      } 
+      }
 
       const response = await fetch(`${mainLink}.json`);
       const data = await response.json();
@@ -77,34 +77,47 @@ export function RedditProvider({ children }) {
     dispatch({
       type: "CLEAR_POSTURL",
     });
-  }
+  };
 
   const bestOf = async () => {
-    let filters = ["top", "hot", "controversial", "rising"]
-    let filteredType = filters[Math.floor(Math.random() * filters.length)]
-    const response = await fetch(`https://www.reddit.com/r/pics/${filteredType}.json`);
-    const data = await response.json()
-   
+    let filters = ["top", "hot"];
+    let subreddit = ["pics", "interestingasfuck"]
+
+    let filteredType = filters[Math.floor(Math.random() * filters.length)];
+    let subredditType = subreddit[Math.floor(Math.random() * subreddit.length)];
+
     dispatch({
-      type: "BESTOF_POSTS",
-      payload: data
-    })
-  }
+      type: "SET_POSTSLOADING",
+    });
+    const response = await fetch(
+      `https://www.reddit.com/r/${subredditType}/${filteredType}.json`
+    );
+    const data = await response.json();
+    if (response.status === 200) {
+      dispatch({
+        type: "BESTOF_POSTS",
+        payload: data,
+      });
+    } else {
+      console.log(response.status);
+    }
+  };
 
   return (
     <RedditContext.Provider
       value={{
         jokes: state.jokes,
         posts: state.posts,
-        loading: state.loading,
-        jokeLoading: state.jokeLoading,
         posturl: state.posturl,
         postDetail: state.postDetail,
+        loading: state.loading,
+        jokeLoading: state.jokeLoading,
+        postsLoading: state.postsLoading,
         fetchJokes,
         link,
         handleSubmit,
         clearPostUrl,
-        bestOf
+        bestOf,
       }}
     >
       {children}
