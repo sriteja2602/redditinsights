@@ -1,4 +1,4 @@
-import { useEffect, useContext, useDispatch } from "react";
+import { useContext } from "react";
 import { FaAward, FaEdit, FaBan } from "react-icons/fa";
 import { HiOutlineThumbUp, HiOutlineThumbDown } from "react-icons/hi";
 import RedditContext from "../context/RedditContext";
@@ -11,8 +11,6 @@ function DisplayAnalytics() {
   } 
   else if (Object.keys(postDetail).length !== 0) {
     const cleaned_data = postDetail[0].data.children[0].data;
-    console.warn(posturl);
-    console.log(posturl.search("comments"));
     let a = 0
     for(let i = 25; i<posturl.length;i++){
       
