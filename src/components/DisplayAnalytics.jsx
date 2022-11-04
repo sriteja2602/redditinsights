@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useContext } from "react";
 import { FaAward, FaEdit, FaBan } from "react-icons/fa";
 import { HiOutlineThumbUp, HiOutlineThumbDown } from "react-icons/hi";
@@ -46,7 +47,7 @@ function DisplayAnalytics() {
 
     return (
       <>
-        <h5 className="text-center mt-10 underline text-xl uppercase font-bold">
+        <h5 className="text-center mt-10 underline text-xl uppercase font-bold" id="postAnalytics">
           Post Analytics
         </h5>
         <div className="my-10 flex justify-center">
@@ -54,7 +55,7 @@ function DisplayAnalytics() {
             id="reddit-embed"
             src={`${embedLink}?ref_source=embed&amp;ref=share&amp;embed=true&amp;theme=dark`}
             sandbox="allow-scripts allow-same-origin allow-popups"
-            className="border-0"
+            className="animate__animated animate__swing border-0"
             height="450"
             width="640"
             scrolling="no"
@@ -67,7 +68,7 @@ function DisplayAnalytics() {
             return (
               <div
                 key={obj}
-                className="overflow-auto text-sm border-b text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                className="animate__animated animate__fadeInUpBig overflow-auto text-sm border-b text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
               >
                 {obj}: {clensedData[obj]}
               </div>

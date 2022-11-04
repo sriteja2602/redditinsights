@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, HashRouter } from 'react-router-dom';
 import 'tw-elements';
 import './App.css';
+import 'animate.css'
 
 import Home from './components/Home';
 import About from './components/About';

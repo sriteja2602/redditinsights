@@ -21,13 +21,13 @@ function Jokes() {
             <div className="text-sm">
               <p
                 type="button"
-                className="font-bold text-white-500"
+                className="animate__animated animate__fade font-bold text-white-500"
                 onClick={dropit}
                 id="dropdown"
               >
                 {jokes.setup}
               </p>
-              <div id="answer" className="text-white-500 w-auto pt-2 hidden">
+              <div id="answer" className="animate__animated animate__fadeInDown text-white-500 w-auto pt-2 hidden">
                 - <i> {jokes.punchline}</i>
               </div>
             </div>
