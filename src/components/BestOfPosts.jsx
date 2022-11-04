@@ -22,12 +22,12 @@ const BestOfPosts = () => {
       // filtered cleaned_data array from image url containing gallery in url since gallery url's cannot be rendered currently
 
       return muchClean.map((i) => (
-        <div className="my-6 py-6" key={i.data.title}>
+        <div className="my-6 py-6 animate__animated animate__fadeInDown" key={i.data.title}>
           <div className="rounded-lg shadow-lg bg-white max-w-sm">
             <img
               className="rounded-t-lg"
               src={i.data.url}
-              alt="A subreddit called pics image"
+              alt="Image from a subreddit"
             />
             <div className="p-6">
               <a href={`https://reddit.com${i.data.permalink}`} target="_blank">
