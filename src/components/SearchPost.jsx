@@ -7,7 +7,6 @@ function SearchPost() {
   const { loading, handleSubmit, link, posturl, clearPostUrl } =
     useContext(RedditContext);
 
-    
   return (
     <>
       <div className="grid xs:justify-items-stretch md:justify-items-center my-5 py-5">
@@ -25,7 +24,7 @@ function SearchPost() {
             value={posturl}
             onChange={link}
             autoFocus
-            type="url"
+            type="search"
             className="
               animate__animated 
               animate__bounceInLeft
@@ -51,7 +50,7 @@ function SearchPost() {
           <div className="flex justify-between">
             <button
               type="button"
-              id="clear"
+              onClick={clearPostUrl}
               className="animate__animated animate__fadeInDown
                inline-block mt-10 px-6 py-2.5 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
             >
