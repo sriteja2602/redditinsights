@@ -80,7 +80,7 @@ export function RedditProvider({ children }) {
   };
 
   const bestOf = async () => {
-    let filters = ["top", "hot", "rising"];
+    let filters = ["top", "hot"];
     let subreddits =  ["pics", "interestingasfuck"]
 
     let filteredType = filters[Math.floor(Math.random() * filters.length)];

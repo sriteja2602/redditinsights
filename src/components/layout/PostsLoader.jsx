@@ -8,6 +8,20 @@ export default function PostsLoader() {
           <div className="image"></div>
           <div className="content">
             <p></p>
+            <div className="grid grid-cols-2 gap-2 px-3 pt-4">
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -16,6 +30,20 @@ export default function PostsLoader() {
           <div className="image"></div>
           <div className="content">
             <p></p>
+            <div className="grid grid-cols-2 gap-2 px-3 pt-4">
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -24,6 +52,20 @@ export default function PostsLoader() {
           <div className="image"></div>
           <div className="content">
             <p></p>
+            <div className="grid grid-cols-2 gap-2 px-3 pt-4">
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+              <div>
+                <p></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
