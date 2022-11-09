@@ -81,26 +81,42 @@ export function RedditProvider({ children }) {
 
   const bestOf = async () => {
     let filters = ["top", "hot"];
-    let subreddits =  "pics"
+    let subreddits =  ["pics", "interestingasfuck"]
 
     let filteredType = filters[Math.floor(Math.random() * filters.length)];
-    // let subredditType = subreddit[Math.floor(Math.random() * subreddit.length)];
+    let subredditType = subreddits[Math.floor(Math.random() * subreddits.length)];
 
     dispatch({
       type: "SET_POSTSLOADING",
     });
     
     const response = await fetch(
-      `https://www.reddit.com/r/${subreddits}/${filteredType}.json`
+      `https://www.reddit.com/r/${subredditType}/${filteredType}.json`
+    );
+    
+    let filteredType1 = filteredType
+    let subredditType1 = subredditType
+
+    for(;;){
+      if(filteredType !== filteredType1 && subredditType !== subredditType1){
+        break;
+      }
+      filteredType1 = filters[Math.floor(Math.random() * filters.length)];
+      subredditType1 = subreddits[Math.floor(Math.random() * subreddits.length)];
+    }
+
+    const response1 = await fetch(
+      `https://www.reddit.com/r/${subredditType}/${filteredType}.json`
     );
     
     let data = await response.json();
-    
+    let data1 = await response1.json();
+    let finalData = data.data.children.concat(data1.data.children)
+
     if (response.status === 200) {
-      
       dispatch({
         type: "BESTOF_POSTS",
-        payload: data,
+        payload: finalData
       });
     } else {
       console.log(response.status);

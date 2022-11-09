@@ -10,6 +10,7 @@ function Navbar() {
   return (
     <nav
         className="
+        animate__animated animate__rubberBand 
           flex flex-wrap
           items-center
           justify-between
