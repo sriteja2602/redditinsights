@@ -20,11 +20,12 @@ const BestOfPosts = () => {
         i.data.is_video !== true &&
         i.data.thumbnail !== "nsfw" &&
         !i.data.over_18 &&
-        i.data.link_flair_text !== "Mod Post"
+        i.data.link_flair_text !== "Mod Post" &&
+        i.data.secure_media === null 
       );
-
     });
-    // filtered cleaned_data array from image url containing gallery in url since gallery url's cannot be rendered currently
+    // filtered cleaned_data array from image url containing gallery in url
+    // since gallery url's cannot be rendered currently
 
     return muchClean.map((i) => (
       <div
@@ -39,22 +40,21 @@ const BestOfPosts = () => {
           />
           <div className="p-6">
             <a href={`https://reddit.com${i.data.permalink}`} target="_blank">
-              <p className="font-semibold text-black text-md font-medium mb-2">
+              <p className="font-semibold text-black text-md font-medium mb-2 text-center">
                 {i.data.title}
               </p>
             </a>
             <div className="grid grid-cols-2 gap-2 px-3 py-1">
-              <div>
+              <div className="place-self-center">
                 <p>Awards</p>
               </div>
-              <div className="place-self-end">
+              <div className="place-self-center">
                 <p>Upvotes</p>
               </div>
-              
-              <div>
+              <div className="place-self-center">
                 <p>{i.data.all_awardings.length}</p>
               </div>
-              <div className="place-self-end">
+              <div className="place-self-center">
                 <p>{i.data.ups}</p>
               </div>
             </div>
