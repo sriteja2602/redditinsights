@@ -81,45 +81,59 @@ export function RedditProvider({ children }) {
 
   const bestOf = async () => {
     let filters = ["top", "hot"];
-    let subreddits =  ["pics", "interestingasfuck"]
+    let subreddits = ["pics", "interestingasfuck", "absoluteunits", "mildyinteresting", "funny"];
 
-    let filteredType = filters[Math.floor(Math.random() * filters.length)];
-    let subredditType = subreddits[Math.floor(Math.random() * subreddits.length)];
+    function shuffle(array) {
+      let currentIndex = array.length,  randomIndex;
+    
+      // While there remain elements to shuffle.
+      while (currentIndex !== 0) {
+    
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+    
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+    
+      return array;
+    }
 
+    shuffle(subreddits)
+    
     dispatch({
       type: "SET_POSTSLOADING",
     });
-    
-    const response = await fetch(
-      `https://www.reddit.com/r/${subredditType}/${filteredType}.json`
-    );
-    
-    let filteredType1 = filteredType
-    let subredditType1 = subredditType
 
-    for(;;){
-      if(filteredType !== filteredType1 && subredditType !== subredditType1){
-        break;
-      }
-      filteredType1 = filters[Math.floor(Math.random() * filters.length)];
-      subredditType1 = subreddits[Math.floor(Math.random() * subreddits.length)];
+    function rand(arrayname) {
+      return arrayname[Math.floor(Math.random() * arrayname.length)];
     }
 
-    const response1 = await fetch(
-      `https://www.reddit.com/r/${subredditType}/${filteredType}.json`
-    );
-    
-    let data = await response.json();
-    let data1 = await response1.json();
-    let finalData = data.data.children.concat(data1.data.children)
+    let filteredType = rand(filters);
+    let finalData = [];
 
-    if (response.status === 200) {
-      dispatch({
-        type: "BESTOF_POSTS",
-        payload: finalData
-      });
-    } else {
-      console.log(response.status);
+    let count = 0;
+    for (let i = 0; i < subreddits.length; i++) {
+      const response = await fetch(
+        `https://www.reddit.com/r/${subreddits[i]}/${filteredType}.json`
+      );
+      count++;
+      let data = await response.json();
+      if (count === 1) {
+        finalData = [];
+      }
+      finalData = finalData.concat(data.data.children);
+      shuffle(finalData)
+      if (response.status === 200 && subreddits.length === count) {
+        dispatch({
+          type: "BESTOF_POSTS",
+          payload: finalData,
+        });
+      } else {
+        console.log(response.status);
+      }
     }
   };
 
