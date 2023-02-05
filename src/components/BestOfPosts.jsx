@@ -16,7 +16,7 @@ const BestOfPosts = () => {
     let cleaned_data = posts;
 
     let muchClean = cleaned_data.filter((i) => {
-      
+      // console.log(i.data)
       return (
         i.data.url.search("gallery") === -1 &&
         i.data.is_video !== true &&
@@ -32,8 +32,9 @@ const BestOfPosts = () => {
     // since gallery url's cannot be rendered currently
 
     return muchClean.map((i) => (
+        
       <div
-        className="my-6 py-6 animate__animated animate__fadeInDown mx-auto justify-center"
+        className="animate__animated animate__fadeInDown mx-auto justify-center"
         key={i.data.id}
       >
         <div className="rounded-lg shadow-lg bg-white max-w-sm zoom">
@@ -50,16 +51,16 @@ const BestOfPosts = () => {
             </a>
             <div className="grid grid-cols-2 gap-2 px-2 py-3">
               <div className="place-self-center">
-                <p>Awards</p>
-              </div>
-              <div className="place-self-center">
                 <p>Upvotes</p>
               </div>
               <div className="place-self-center">
-                <p>{i.data.all_awardings.length}</p>
+                <p>Awards</p>
               </div>
               <div className="place-self-center">
                 <p>{i.data.ups}</p>
+              </div>
+              <div className="place-self-center">
+                <p>{i.data.all_awardings.length}</p>
               </div>
             </div>
             <div className="pt-4 flex justify-end">
@@ -69,6 +70,7 @@ const BestOfPosts = () => {
             </div>
           </div>
         </div>
+      
       </div>
     ));
   } else {

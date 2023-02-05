@@ -68,7 +68,7 @@ const DisplayPosts = () => {
         </svg>
       </button>
     }
-      <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:gap-20">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:gap-20 mt-10">
         <BestOfPosts />
       </div>
     </>

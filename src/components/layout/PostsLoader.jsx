@@ -1,4 +1,4 @@
-import "./PostsLoaderCard.css";
+import "./postsLoaderCard.css";
 
 export default function PostsLoader() {
   return (

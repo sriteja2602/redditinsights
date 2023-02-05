@@ -81,7 +81,8 @@ export function RedditProvider({ children }) {
 
   const bestOf = async () => {
     let filters = ["top", "hot"];
-    let subreddits = ["pics", "interestingasfuck", "absoluteunits", "mildyinteresting", "funny"];
+    // let subreddits = ["pics", "interestingasfuck", "absoluteunits", "mildyinteresting", "funny"];
+    let subreddits = ["pics"];
 
     function shuffle(array) {
       let currentIndex = array.length,  randomIndex;
