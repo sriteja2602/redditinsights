@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import RedditContext from "../context/RedditContext";
 import Loader from "./layout/Loader";
+import fmt from "indian-number-format"
 
 function DisplayAnalytics() {
   const { postDetail, posturl, loading } = useContext(RedditContext);
@@ -29,17 +30,17 @@ function DisplayAnalytics() {
     const clensedData = {
       Author: cleaned_data.author,
       Title: cleaned_data.title,
-      Upvotes: cleaned_data.ups,
+      Upvotes: fmt.format(cleaned_data.ups)  ,
       Downvotes: cleaned_data.downs,
-      Comments: cleaned_data.num_comments,
-      "Total Awards": cleaned_data.total_awards_received,
+      Comments: fmt.format(cleaned_data.num_comments),
+      "Total Awards": fmt.format(cleaned_data.total_awards_received),
       "Upvote Ratio": cleaned_data.upvote_ratio,
-      Score: cleaned_data.score,
-      Crossposts: cleaned_data.num_crossposts,
-      Duplicates: cleaned_data.num_duplicates,
-      "Subreddit Type": cleaned_data.subreddit_type,  
+      Score: fmt.format(cleaned_data.score),
+      Crossposts: fmt.format(cleaned_data.num_crossposts),
+      Duplicates: fmt.format(cleaned_data.num_duplicates),
+      Post: cleaned_data.archived ? "Archived" : "Public",  
       Url: cleaned_data.url,
-      "Subreddit subscribers": cleaned_data.subreddit_subscribers,
+      "Subreddit Subscribers": fmt.format(cleaned_data.subreddit_subscribers),
       Download: extractLink
     };
 
