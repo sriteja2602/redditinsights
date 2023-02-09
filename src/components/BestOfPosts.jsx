@@ -37,14 +37,14 @@ const BestOfPosts = () => {
         className="animate__animated animate__fadeInDown mx-auto justify-center"
         key={i.data.id}
       >
-        <div className="rounded-lg shadow-lg bg-white max-w-sm zoom">
+        <div className="rounded-lg shadow bg-white max-w-sm zoom mb-10">
           <img
             className="rounded-t-lg"
             src={i.data.url}
             alt="Image from a subreddit"
           />
           <div className="p-6 bottom-card">
-            <a href={`https://reddit.com${i.data.permalink}`} target="_blank">
+            <a rel="noreferrer" href={`https://reddit.com${i.data.permalink}`} target="_blank">
               <p className="font-bold text-black text-md font-medium mb-2 text-center title">
                 {i.data.title}
               </p>
@@ -64,7 +64,7 @@ const BestOfPosts = () => {
               </div>
             </div>
             <div className="pt-4 flex justify-end">
-            <a href={`https://reddit.com/user/${i.data.author}`} target="_blank">
+            <a rel="noreferrer" href={`https://reddit.com/user/${i.data.author}`} target="_blank">
               <i className="opacity-50">─ {i.data.author}</i>
             </a>
             </div>

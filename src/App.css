@@ -13,8 +13,9 @@ input,
 textarea,
 button,
 select,
+svg,
 a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .active{

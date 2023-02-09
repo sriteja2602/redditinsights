@@ -7,6 +7,11 @@ function Navbar() {
       menu.classList.toggle('hidden');
   }
 
+  const homeLogoClick = () => {
+    const menu = document.querySelector('#menu');
+      menu.classList.add('hidden');
+  }
+
   return (
     <nav
         className="
@@ -26,7 +31,7 @@ function Navbar() {
         "
       >
        <div>
-          <Link to="/">Reddit Insights</Link>
+          <Link to="/" onClick={homeLogoClick} className="text-xl font-bold text-black tracking-wide">Reddit Insights</Link>
         </div>
        
          <svg
@@ -47,7 +52,7 @@ function Navbar() {
             />
           </svg>
        
-       <div className="hidden w-full md:flex md:items-center md:w-auto " id="menu">
+       <div className="hidden w-full md:flex md:items-center md:w-auto" id="menu">
        <ul
             className="
               pt-4
@@ -58,12 +63,12 @@ function Navbar() {
               "
           >
             <li>
-              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/bestOf" onClick={hambar}
+              <NavLink className="md:p-4 py-2 text-lg block hover:text-purple-400" to="/bestOf" onClick={hambar}
                 >Best Of
               </NavLink>
             </li>
             <li>
-              <NavLink className="md:p-4 py-2 block hover:text-purple-400" to="/analytics" onClick={hambar}
+              <NavLink className="md:p-4 py-2 text-lg block hover:text-purple-400" to="/analytics" onClick={hambar}
                 >Analytics
               </NavLink>
             </li>

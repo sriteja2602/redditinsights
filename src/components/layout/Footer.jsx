@@ -60,8 +60,8 @@ function Footer(params) {
               Tailwind ELEMENTS
             </h6>
             <p>
-              Here you can use rows and columns to organize your footer content.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus 
+              eligendi quas repudiandae quis reprehenderit molestias, architecto praesentium vitae consequatur!
             </p>
           </div>
           <div className="">

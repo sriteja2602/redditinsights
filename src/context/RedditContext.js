@@ -80,9 +80,8 @@ export function RedditProvider({ children }) {
   };
 
   const bestOf = async () => {
-    let filters = ["top", "hot"];
-    // let subreddits = ["pics", "interestingasfuck", "absoluteunits", "mildyinteresting", "funny"];
-    let subreddits = ["pics"];
+    let subreddits = ["pics", "interestingasfuck", "absoluteunits", "mildyinteresting", "funny"];
+    //let subreddits = ["pics"];
 
     function shuffle(array) {
       let currentIndex = array.length,  randomIndex;
@@ -108,17 +107,13 @@ export function RedditProvider({ children }) {
       type: "SET_POSTSLOADING",
     });
 
-    function rand(arrayname) {
-      return arrayname[Math.floor(Math.random() * arrayname.length)];
-    }
 
-    let filteredType = rand(filters);
     let finalData = [];
 
     let count = 0;
     for (let i = 0; i < subreddits.length; i++) {
       const response = await fetch(
-        `https://www.reddit.com/r/${subreddits[i]}/${filteredType}.json`
+        `https://www.reddit.com/r/${subreddits[i]}/top.json`
       );
       count++;
       let data = await response.json();

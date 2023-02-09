@@ -79,7 +79,7 @@ function DisplayAnalytics() {
           }
           else{
             return (
-              <a className="animate__animated animate__fadeInUpBig overflow-auto text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap
+              <a rel="noreferrer" className="animate__animated animate__fadeInUpBig overflow-auto text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap
                underline underline-offset-4 hover:text-sky-500"
               href={`https://rapidsave.com/info?url=${clensedData[obj]}`} target="_blank">Download Content</a>
             )
